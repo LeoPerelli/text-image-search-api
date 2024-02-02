@@ -1,0 +1,16 @@
+services:
+  qdrant:
+    image: qdrant/qdrant
+    volumes:
+      - ../qdrant_storage:/qdrant/storage
+
+  app:
+    build: ../
+    volumes:
+      - ../data:/data
+      - ../code:/code
+    depends_on:
+      - qdrant
+    ports:
+      - "8000:8000"
+    
